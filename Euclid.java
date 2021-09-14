@@ -1,5 +1,8 @@
-public class Euclid {
+/**
+ * ユークリッドの互除法
+ */
 
+public class Euclid {
   static int euclidean(int a, int b) {
     int m, n, k;
     m = a;
