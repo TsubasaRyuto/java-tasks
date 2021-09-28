@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Lec14Main {
   // 配列を分割するメソッド
-  // ex) { 1, 2, 3, 4 } => {{ 1, 2 }, { 3, 4 }}
+  // ex) { Teacher, Taro, 40, Student, Hanako, 20, Programming } => {{ Teacher, Taro, 40 }, { Student, Hanako, 20, Programming }}
   static private String[][] sliceArray(String[] array) {
     String[][] newArray = new String[100][4];
     int newArrayIndex = 0;
@@ -15,7 +15,6 @@ public class Lec14Main {
       if (!(message.equals("teacher") || message.equals("student"))) continue;
 
       int size = 3;
-
       if (message.equals("student")) size = 4;
 
       newArray[newArrayIndex] = Arrays.copyOfRange(array, i, i + size);
