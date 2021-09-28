@@ -15,4 +15,8 @@ public class Teacher extends Person implements Worker {
   public Job getJob(){
     return new Lecturer();
   }
+
+  public void printInfo(){
+    System.out.println(getName() + "/" + getAge() + "/" + getJob().getJobName());
+  }
 }

@@ -15,4 +15,8 @@ public class Student extends Person implements Learner {
   public Study getStudy(){
     return study;
   }
+
+  public void printInfo(){
+    System.out.println(getName() + "/" + getAge() + "/" + getStudy().getStudyName());
+  }
 }

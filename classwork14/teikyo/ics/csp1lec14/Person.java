@@ -13,6 +13,6 @@ public class Person {
   }
 
   public void printInfo(){
-    System.out.println( this.getName());
+    System.out.println(this.getName());
   }
 }
