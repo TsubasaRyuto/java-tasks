@@ -4,14 +4,22 @@ import teikyo.ics.csp1lec14.student.*;
 import java.util.Arrays;
 
 public class Lec14Main {
-  // 配列を指定数分、分割するメソッド
+  // 配列を分割するメソッド
   // ex) { 1, 2, 3, 4 } => {{ 1, 2 }, { 3, 4 }}
-  static private String[][] sliceArray(String[] array, int number) {
-    int length = (int) Math.ceil((double) (array.length / number));
-    String[][] newArray = new String[length][number];
+  static private String[][] sliceArray(String[] array) {
+    String[][] newArray = new String[100][4];
+    int newArrayIndex = 0;
 
-    for (int i = 0; i < length; i++) {
-      newArray[i] = Arrays.copyOfRange(array, i * number, (i + 1) * number);
+    for (int i = 0; i < array.length; i++) {
+      String message = array[i].toLowerCase();
+      if (!(message.equals("teacher") || message.equals("student"))) continue;
+
+      int size = 3;
+
+      if (message.equals("student")) size = 4;
+
+      newArray[newArrayIndex] = Arrays.copyOfRange(array, i, i + size);
+      newArrayIndex++;
     }
 
     return newArray;
@@ -19,20 +27,22 @@ public class Lec14Main {
 
   public static void main(String[] args){
     try {
-      if (args.length % 3 != 0 || args.length == 0) {
+      if (args.length < 3) {
         throw new ArrayIndexOutOfBoundsException();
       }
 
-      String[][] dividedArgs = sliceArray(args, 3);
+      String[][] dividedArgs = sliceArray(args);
       for (String[] n: dividedArgs) {
-        switch (n[0]) {
+        if (n[0] == null) break;
+
+        switch (n[0].toLowerCase()) {
           case "teacher":
             Teacher t = new Teacher();
             t.setValues(n[1], Integer.parseInt(n[2]));
             t.printInfo();
             break;
           case "student":
-            Student s = new Student();
+            Student s = new Student(n[3]);
             s.setValues(n[1], Integer.parseInt(n[2]));
             s.printInfo();
             break;
